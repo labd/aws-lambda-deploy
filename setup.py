@@ -26,8 +26,7 @@ setup(
     ],
     tests_require=tests_require,
     extras_require={'test': tests_require},
-    package_dir={'': '.'},
-    packages=find_packages('.'),
+    py_modules=['aws_lambda_deploy'],
     license='MIT',
     classifiers=[
         'Development Status :: 4 - Beta',

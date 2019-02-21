@@ -8,8 +8,8 @@ import click
 @click.option("--function-name", required=True)
 @click.option("--s3-url", required=True)
 @click.option("--region-name", default=None, required=False)
-def main(assume_role, function_name, s3_url):
-    client = get_client(assume_role)
+def main(assume_role, function_name, s3_url, region_name):
+    client = get_client(assume_role, region_name)
     s3_url_info = urllib.parse.urlparse(s3_url)
 
     response = client.update_function_code(

@@ -7,6 +7,7 @@ import click
 @click.option("--assume-role")
 @click.option("--function-name", required=True)
 @click.option("--s3-url", required=True)
+@click.option("--region-name", default=None, required=False)
 def main(assume_role, function_name, s3_url):
     client = get_client(assume_role)
     s3_url_info = urllib.parse.urlparse(s3_url)
@@ -21,7 +22,7 @@ def main(assume_role, function_name, s3_url):
     print(response)
 
 
-def get_client(assume_role):
+def get_client(assume_role, region_name):
     credentials = {}
     if assume_role:
         sts = boto3.client("sts")
@@ -33,6 +34,10 @@ def get_client(assume_role):
                 "aws_session_token": resp["Credentials"]["SessionToken"],
             }
         )
+
+    if region_name:
+        credentials.update({"region_name": region_name})
+
     return boto3.client("lambda", **credentials)
 
 

@@ -21,7 +21,7 @@ setup(
     author="Michael van Tellingen",
     author_email="opensource@labdigital.nl",
     install_requires=[
-        'boto3>=2.49.0,<3.0',
+        'boto3>=1.14.37,<1.15',
         'click>=7.1.2',
     ],
     tests_require=tests_require,
